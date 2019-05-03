@@ -1,0 +1,14 @@
+<div ng-if="showCountry">
+	<ul class="info-list">
+		<li><strong class="large">{{countryName}}</strong></li>
+		<li>Status:
+			<strong ng-class="countryStatus === 'bad' ? 'red' : 'green'">{{countryStatus}}</strong>
+		</li>
+		<li class="double">
+			<p>Highest Value: <strong>{{countryMaxValue}}</strong></p>
+			<p>Lowest Value: <strong>{{countryMinValue}}</strong></p>
+		</li>
+	</ul>
+
+	<canvas id="countryChart" width="400px" height="400px"></canvas>
+</div>
