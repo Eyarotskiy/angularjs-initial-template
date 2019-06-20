@@ -1,4 +1,4 @@
-dataApp.config(($routeProvider, $locationProvider) => {
+dataApp.config(function($routeProvider, $locationProvider) {
 	$routeProvider
 		.when('/', {
 			templateUrl: '/view/country.html',

@@ -1,4 +1,4 @@
-dataApp.controller('mainController', ($rootScope, getCountryFactory) => {
+dataApp.controller('mainController', function($rootScope, getCountryFactory) {
 
 	$rootScope.countryList = [];
 	$rootScope.showCountry = false;

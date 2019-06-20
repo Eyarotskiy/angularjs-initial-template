@@ -1,15 +1,15 @@
-dataApp.factory('getCountryFactory', ($http, $rootScope, graphFactory) => {
+dataApp.factory('getCountryFactory', function($http, $rootScope, graphFactory) {
 	const root = {};
 
 	/**
 	 * Getting the list of countries from DB (JSON file in our case)
 	 */
-	root.getCountryList = () => {
+	root.getCountryList = function() {
 		$http.get('/json/countryList.json').then(
-			response => {
+			function(response) {
 				$rootScope.countryList = response.data;
 			},
-			errorResponse => {
+			function(errorResponse) {
 				console.log(`Something went wrong: ${errorResponse}`);
 			});
 	};
@@ -19,9 +19,9 @@ dataApp.factory('getCountryFactory', ($http, $rootScope, graphFactory) => {
 	 *
 	 * @param country, id - country name and id, contained in the URL's parameters
 	 */
-	root.getData = (country, id) => {
+	root.getData = function(country, id) {
 		$http.get('/json/countryData.json').then(
-			response => {
+			function(response) {
 				const selectedCountryData = response.data.find(entry => entry.id === parseInt(id));
 				const timeSeriesData = graphFactory.sortTimeSeries(selectedCountryData);
 				$rootScope.countryName = country;
@@ -29,7 +29,7 @@ dataApp.factory('getCountryFactory', ($http, $rootScope, graphFactory) => {
 				root.showData(selectedCountryData);
 				graphFactory.draw(timeSeriesData[0], timeSeriesData[1]);
 			},
-			errorResponse => {
+			function(errorResponse) {
 				console.log(`Something went wrong: ${errorResponse}`);
 			});
 	};
@@ -39,7 +39,7 @@ dataApp.factory('getCountryFactory', ($http, $rootScope, graphFactory) => {
 	 *
 	 * @param selectedCountryData - JSON with the data for the selected сountry
 	 */
-	root.showData = selectedCountryData => {
+	root.showData = function(selectedCountryData) {
 		$rootScope.countryStatus = selectedCountryData.status;
 		$rootScope.countryMaxValue = root.findValue('max', selectedCountryData.timeseries);
 		$rootScope.countryMinValue = root.findValue('min', selectedCountryData.timeseries);
@@ -53,7 +53,7 @@ dataApp.factory('getCountryFactory', ($http, $rootScope, graphFactory) => {
 	 * 
 	 * @return finalValue - min/max value of the country
 	 */
-	root.findValue = (order, valuesArray) => {
+	root.findValue = function(order, valuesArray) {
 		let finalValue = (order === 'max') ? 0 : 100;
 		let currentValue;
 

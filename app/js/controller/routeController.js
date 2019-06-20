@@ -1,6 +1,6 @@
-dataApp.controller('routeController', ($scope, $rootScope, $routeParams, getCountryFactory, graphFactory) => {
+dataApp.controller('routeController', function($scope, $rootScope, $routeParams, getCountryFactory, graphFactory)  {
 
-	$scope.showCountryInfo = () => {
+	$scope.showCountryInfo = function() {
 		if (Object.keys($routeParams).length) {
 			$rootScope.showCountry = true;
 			$rootScope.activeCountry = $routeParams.country;

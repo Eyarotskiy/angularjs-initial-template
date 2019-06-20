@@ -1,4 +1,4 @@
-dataApp.factory('graphFactory', $document => {
+dataApp.factory('graphFactory', function($document) {
 	const root = {};
 
 	/**
@@ -6,8 +6,8 @@ dataApp.factory('graphFactory', $document => {
 	 *
 	 * @param countryTime, countryValue - two arrays with timeseries data from JSON
 	 */
-	root.draw = (countryTime, countryValue) => {
-		$document.ready(() => {
+	root.draw = function(countryTime, countryValue) {
+		$document.ready(function() {
 			const chartCanvas = document.getElementById('countryChart');
 
 			if (chartCanvas) {

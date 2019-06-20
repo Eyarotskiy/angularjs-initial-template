@@ -14,7 +14,6 @@ const historyApiFallback = require('connect-history-api-fallback');
 
 const lessFiles = './app/styles/styles.less';
 const jsFiles = [
-	'./app/libs/jquery/**/*.js',
 	'./app/libs/angularJS/angular.js',
 	'./app/libs/**/*.js',
 	'./app/js/**/*.js',
